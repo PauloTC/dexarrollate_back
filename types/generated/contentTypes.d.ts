@@ -362,113 +362,6 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiDocumentDocument extends Schema.CollectionType {
-  collectionName: 'documents';
-  info: {
-    singularName: 'document';
-    pluralName: 'documents';
-    displayName: 'Document';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    file: Attribute.Media;
-    title: Attribute.String;
-    type: Attribute.Enumeration<['manual', 'calendario', 'indice']>;
-    resources: Attribute.Relation<
-      'api::document.document',
-      'manyToMany',
-      'api::resource.resource'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::document.document',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::document.document',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiInicioInicio extends Schema.SingleType {
-  collectionName: 'inicios';
-  info: {
-    singularName: 'inicio';
-    pluralName: 'inicios';
-    displayName: 'inicio';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    video: Attribute.Media;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::inicio.inicio',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::inicio.inicio',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiResourceResource extends Schema.CollectionType {
-  collectionName: 'resources';
-  info: {
-    singularName: 'resource';
-    pluralName: 'resources';
-    displayName: 'Resource';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    title: Attribute.String;
-    subtitle: Attribute.String;
-    position: Attribute.Enumeration<
-      ['vendedor', 'supervisor', 'administrador']
-    >;
-    documents: Attribute.Relation<
-      'api::resource.resource',
-      'manyToMany',
-      'api::document.document'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::resource.resource',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::resource.resource',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -880,6 +773,11 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
     position: Attribute.Enumeration<['vendedor', 'supervisor']>;
     name: Attribute.String;
     lastname: Attribute.String;
+    survey_options: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'manyToMany',
+      'api::survey-option.survey-option'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -897,6 +795,228 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiDocumentDocument extends Schema.CollectionType {
+  collectionName: 'documents';
+  info: {
+    singularName: 'document';
+    pluralName: 'documents';
+    displayName: 'Document';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    file: Attribute.Media;
+    title: Attribute.String;
+    type: Attribute.Enumeration<['manual', 'calendario', 'indice']>;
+    resources: Attribute.Relation<
+      'api::document.document',
+      'manyToMany',
+      'api::resource.resource'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::document.document',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::document.document',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiInicioInicio extends Schema.SingleType {
+  collectionName: 'inicios';
+  info: {
+    singularName: 'inicio';
+    pluralName: 'inicios';
+    displayName: 'inicio';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    video: Attribute.Media;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::inicio.inicio',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::inicio.inicio',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiResourceResource extends Schema.CollectionType {
+  collectionName: 'resources';
+  info: {
+    singularName: 'resource';
+    pluralName: 'resources';
+    displayName: 'Resource';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    subtitle: Attribute.String;
+    position: Attribute.Enumeration<
+      ['vendedor', 'supervisor', 'administrador']
+    >;
+    documents: Attribute.Relation<
+      'api::resource.resource',
+      'manyToMany',
+      'api::document.document'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::resource.resource',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::resource.resource',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiSurveyOptionSurveyOption extends Schema.CollectionType {
+  collectionName: 'survey_options';
+  info: {
+    singularName: 'survey-option';
+    pluralName: 'survey-options';
+    displayName: 'SurveyOption';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    option: Attribute.String;
+    survey_question: Attribute.Relation<
+      'api::survey-option.survey-option',
+      'manyToOne',
+      'api::survey-question.survey-question'
+    >;
+    users_permissions_users: Attribute.Relation<
+      'api::survey-option.survey-option',
+      'manyToMany',
+      'plugin::users-permissions.user'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::survey-option.survey-option',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::survey-option.survey-option',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiSurveyQuestionSurveyQuestion extends Schema.CollectionType {
+  collectionName: 'survey_questions';
+  info: {
+    singularName: 'survey-question';
+    pluralName: 'survey-questions';
+    displayName: 'SurveyQuestion';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    survey_options: Attribute.Relation<
+      'api::survey-question.survey-question',
+      'oneToMany',
+      'api::survey-option.survey-option'
+    >;
+    active: Attribute.Boolean & Attribute.DefaultTo<true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::survey-question.survey-question',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::survey-question.survey-question',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiUserSurveyUserSurvey extends Schema.SingleType {
+  collectionName: 'user_surveys';
+  info: {
+    singularName: 'user-survey';
+    pluralName: 'user-surveys';
+    displayName: 'UserSurvey';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    description: Attribute.Text;
+    survey_questions: Attribute.Relation<
+      'api::user-survey.user-survey',
+      'oneToMany',
+      'api::survey-question.survey-question'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::user-survey.user-survey',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::user-survey.user-survey',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -907,9 +1027,6 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::document.document': ApiDocumentDocument;
-      'api::inicio.inicio': ApiInicioInicio;
-      'api::resource.resource': ApiResourceResource;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
@@ -918,6 +1035,12 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::document.document': ApiDocumentDocument;
+      'api::inicio.inicio': ApiInicioInicio;
+      'api::resource.resource': ApiResourceResource;
+      'api::survey-option.survey-option': ApiSurveyOptionSurveyOption;
+      'api::survey-question.survey-question': ApiSurveyQuestionSurveyQuestion;
+      'api::user-survey.user-survey': ApiUserSurveyUserSurvey;
     }
   }
 }

@@ -1,0 +1,27 @@
+{
+  "kind": "singleType",
+  "collectionName": "user_surveys",
+  "info": {
+    "singularName": "user-survey",
+    "pluralName": "user-surveys",
+    "displayName": "UserSurvey",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "survey_questions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::survey-question.survey-question"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "survey_questions",
+  "info": {
+    "singularName": "survey-question",
+    "pluralName": "survey-questions",
+    "displayName": "SurveyQuestion",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "survey_options": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::survey-option.survey-option",
+      "mappedBy": "survey_question"
+    },
+    "active": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}
