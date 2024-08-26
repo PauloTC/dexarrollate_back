@@ -21,7 +21,7 @@
       "target": "api::survey-question.survey-question",
       "inversedBy": "survey_options"
     },
-    "users_permissions_users": {
+    "user_answer": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "plugin::users-permissions.user",

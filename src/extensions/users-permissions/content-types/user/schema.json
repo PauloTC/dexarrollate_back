@@ -82,7 +82,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::survey-option.survey-option",
-      "mappedBy": "users_permissions_users"
+      "mappedBy": "user_answer"
     }
   }
 }

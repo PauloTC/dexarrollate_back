@@ -920,7 +920,7 @@ export interface ApiSurveyOptionSurveyOption extends Schema.CollectionType {
       'manyToOne',
       'api::survey-question.survey-question'
     >;
-    users_permissions_users: Attribute.Relation<
+    user_answer: Attribute.Relation<
       'api::survey-option.survey-option',
       'manyToMany',
       'plugin::users-permissions.user'
