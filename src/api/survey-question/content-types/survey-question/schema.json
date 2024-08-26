@@ -20,10 +20,6 @@
       "relation": "oneToMany",
       "target": "api::survey-option.survey-option",
       "mappedBy": "survey_question"
-    },
-    "active": {
-      "type": "boolean",
-      "default": true
     }
   }
 }

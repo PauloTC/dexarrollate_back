@@ -961,7 +961,6 @@ export interface ApiSurveyQuestionSurveyQuestion extends Schema.CollectionType {
       'oneToMany',
       'api::survey-option.survey-option'
     >;
-    active: Attribute.Boolean & Attribute.DefaultTo<true>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
