@@ -778,6 +778,11 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'manyToMany',
       'api::survey-option.survey-option'
     >;
+    id_module_asign: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToMany',
+      'api::module-asign.module-asign'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -855,6 +860,85 @@ export interface ApiInicioInicio extends Schema.SingleType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::inicio.inicio',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiModuleModule extends Schema.CollectionType {
+  collectionName: 'modules';
+  info: {
+    singularName: 'module';
+    pluralName: 'modules';
+    displayName: 'Module';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    image: Attribute.Media;
+    description: Attribute.String;
+    id_module_asign: Attribute.Relation<
+      'api::module.module',
+      'oneToMany',
+      'api::module-asign.module-asign'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::module.module',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::module.module',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiModuleAsignModuleAsign extends Schema.CollectionType {
+  collectionName: 'module_asigns';
+  info: {
+    singularName: 'module-asign';
+    pluralName: 'module-asigns';
+    displayName: 'ModuleAsign';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    id_module: Attribute.Relation<
+      'api::module-asign.module-asign',
+      'manyToOne',
+      'api::module.module'
+    >;
+    id_user: Attribute.Relation<
+      'api::module-asign.module-asign',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    status: Attribute.Enumeration<['in_progress', 'blocked']>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::module-asign.module-asign',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::module-asign.module-asign',
       'oneToOne',
       'admin::user'
     > &
@@ -1036,6 +1120,8 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::document.document': ApiDocumentDocument;
       'api::inicio.inicio': ApiInicioInicio;
+      'api::module.module': ApiModuleModule;
+      'api::module-asign.module-asign': ApiModuleAsignModuleAsign;
       'api::resource.resource': ApiResourceResource;
       'api::survey-option.survey-option': ApiSurveyOptionSurveyOption;
       'api::survey-question.survey-question': ApiSurveyQuestionSurveyQuestion;

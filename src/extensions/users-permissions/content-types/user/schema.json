@@ -83,6 +83,12 @@
       "relation": "manyToMany",
       "target": "api::survey-option.survey-option",
       "mappedBy": "user_answer"
+    },
+    "id_module_asign": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::module-asign.module-asign",
+      "mappedBy": "id_user"
     }
   }
 }
