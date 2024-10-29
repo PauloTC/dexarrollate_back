@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "module_asigns",
+  "info": {
+    "singularName": "module-asign",
+    "pluralName": "module-asigns",
+    "displayName": "ModuleAsign",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "id_module": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::module.module",
+      "inversedBy": "id_module_asign"
+    },
+    "id_user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "id_module_asign"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "in_progress",
+        "blocked"
+      ]
+    }
+  }
+}
